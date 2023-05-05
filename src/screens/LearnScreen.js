@@ -103,7 +103,7 @@ const LearnScreen = () => {
           ></iframe>
         </div>
         <div className={styles.div2}>
-          <Grid.Container gap={2}>
+          <Grid.Container gap={1} css={{marginTop: -10}}>
             <Grid>
               <Collapse.Group shadow css={{ backgroundColor: "#16181A" }}>
                 {calculusQuestions.map((item) => (
