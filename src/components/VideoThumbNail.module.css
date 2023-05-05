@@ -1,0 +1,11 @@
+.VHeaderContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerImg {
+    width: 40%;
+    border-radius: 15px;
+}   
