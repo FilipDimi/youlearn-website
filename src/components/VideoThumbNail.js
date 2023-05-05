@@ -13,7 +13,7 @@ const VideoThumbNail = (props) => {
   };
 
   return (
-    <Grid xs={12} md={6} lg={4} xl={3}>
+    <Grid xs={8} md={6} lg={4} xl={3}>
       <Card
         onPress={RedirectHandler}
         isPressable
