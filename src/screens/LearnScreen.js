@@ -8,6 +8,7 @@ import {
   Textarea,
   Button,
 } from "@nextui-org/react";
+import { motion, MotionConfig } from "framer-motion";
 import styles from "./LearnScreen.module.css";
 import QuestionContainer from "../components/QuestionContainer";
 import NeuralNetwork from "../components/NeuralNetwork";
@@ -86,60 +87,99 @@ const LearnScreen = () => {
   return (
     <>
       <NeuralNetwork />
-      <Button shadow color="success" auto onPress={RedirectHandler}>
-        Go Back
-      </Button>
+      <MotionConfig transition={{ duration: 1 }}>
+        <motion.div
+          initial={{ opacity: 0, x: -300 }}
+          animate={{ opacity: 1, x: 0 }}
+        >
+          <Button shadow color="success" auto onPress={RedirectHandler}>
+            Go Back
+          </Button>
+        </motion.div>
+      </MotionConfig>
       <div className={styles.parent}>
-        <div className={styles.div1}>
-          <iframe
-            style={{ borderRadius: 20 }}
-            width="100%"
-            height="100%"
-            src="https://www.youtube.com/embed/M9W5Fn0_WAM?start=0"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div className={styles.div2}>
-          <Grid.Container gap={1} css={{marginTop: -10}}>
-            <Grid>
-              <Collapse.Group shadow css={{ backgroundColor: "#16181A" }}>
-                {calculusQuestions.map((item) => (
-                  <QuestionContainer
-                    question={item.question}
-                    correct={item.correct}
-                    A={item.A}
-                    B={item.B}
-                    C={item.C}
-                    D={item.D}
-                    feedback={item.feedback}
-                  />
-                ))}
-                <QuestionContainer />
-              </Collapse.Group>
-            </Grid>
-          </Grid.Container>
-        </div>
-        <div className={styles.div3}>
-          <Card
-            css={{ backgroundColor: "#16181A", marginTop: 20, padding: 20 }}
+        <MotionConfig transition={{ duration: 1 }}>
+          <motion.div
+            className={styles.div1}
+            initial={{ opacity: 0, x: -300 }}
+            animate={{ opacity: 1, x: 0 }}
           >
-            <h3>Short Answer</h3>
-            <Text color="#fff" size={18} css={{ marginTop: 10 }}>
-              Find the arc length of the curve y = (1/3)x^3 from x = 0 to x = 1.
-            </Text>
-            <Textarea
-              labelPlaceholder="Answer"
-              status="success"
-              css={{ opacity: 0.8, color: "#000", marginTop: 18, marginBottom: 15 }}
-            />
-            <Button color="success" auto>
-              Submit
-            </Button>
-          </Card>
-        </div>
+            <iframe
+              style={{ borderRadius: 20 }}
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/M9W5Fn0_WAM?start=0"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </motion.div>
+        </MotionConfig>
+        <MotionConfig transition={{ duration: 1 }}>
+          <motion.div
+            className={styles.div2}
+            initial={{ opacity: 0, x: 300 }}
+            animate={{ opacity: 1, x: 0 }}
+          >
+            <Grid.Container gap={1} css={{ marginTop: -10 }}>
+              <Grid>
+                <Collapse.Group
+                  shadow
+                  css={{ backgroundColor: "#16181A", opacity: 0.85 }}
+                >
+                  {calculusQuestions.map((item) => (
+                    <QuestionContainer
+                      question={item.question}
+                      correct={item.correct}
+                      A={item.A}
+                      B={item.B}
+                      C={item.C}
+                      D={item.D}
+                      feedback={item.feedback}
+                    />
+                  ))}
+                  <QuestionContainer />
+                </Collapse.Group>
+              </Grid>
+            </Grid.Container>
+          </motion.div>
+        </MotionConfig>
+        <MotionConfig transition={{ duration: 1 }}>
+          <motion.div
+            className={styles.div3}
+            initial={{ opacity: 0, y: 400 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <Card
+              css={{
+                backgroundColor: "#16181A",
+                marginTop: 20,
+                padding: 20,
+                opacity: 0.85,
+              }}
+            >
+              <h3>Short Answer</h3>
+              <Text color="#fff" size={18} css={{ marginTop: 10 }}>
+                Find the arc length of the curve y = (1/3)x^3 from x = 0 to x =
+                1.
+              </Text>
+              <Textarea
+                labelPlaceholder="Answer"
+                status="success"
+                css={{
+                  opacity: 0.8,
+                  color: "#000",
+                  marginTop: 18,
+                  marginBottom: 15,
+                }}
+              />
+              <Button color="success" auto>
+                Submit
+              </Button>
+            </Card>
+          </motion.div>
+        </MotionConfig>
       </div>
     </>
   );

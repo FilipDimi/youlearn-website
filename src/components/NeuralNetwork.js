@@ -2,7 +2,7 @@ import React from "react";
 
 const NeuralNetwork = () => {
   return (
-    <div style={{ position: 'fixed' }}>
+    <div style={{ position: 'fixed', width: "100%" }}>
       <svg
         fill="none"
         height="1352"

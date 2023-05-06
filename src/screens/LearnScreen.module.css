@@ -9,10 +9,11 @@
 
 .div1 {
   grid-area: 1 / 1 / 4 / 4;
-  height: 500px;
+  height: 545px;
 }
 .div2 {
   grid-area: 1 / 4 / 6 / 6;
+  z-index: 500;
 }
 .div3 {
   grid-area: 4 / 1 / 6 / 4;
