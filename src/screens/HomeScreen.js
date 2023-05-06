@@ -9,14 +9,7 @@ const HomeScreen = () => {
   return (
     <>
       <NeuralNetwork />
-      <MotionConfig transition={{ duration: 1 }}>
-        <motion.div
-          initial={{ opacity: 0, y: -300 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <SearchBox />
-        </motion.div>
-      </MotionConfig>
+      <SearchBox />
       <MotionConfig transition={{ duration: 1 }}>
         <motion.div
           initial={{ opacity: 0, y: 300 }}

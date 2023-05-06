@@ -12,6 +12,7 @@ import { motion, MotionConfig } from "framer-motion";
 import styles from "./LearnScreen.module.css";
 import QuestionContainer from "../components/QuestionContainer";
 import NeuralNetwork from "../components/NeuralNetwork";
+import Header from "../components/Header";
 
 const calculusQuestions = [
   {
@@ -86,6 +87,7 @@ const LearnScreen = () => {
 
   return (
     <>
+    <Header />
       <NeuralNetwork />
       <MotionConfig transition={{ duration: 1 }}>
         <motion.div
@@ -114,35 +116,6 @@ const LearnScreen = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
             ></iframe>
-          </motion.div>
-        </MotionConfig>
-        <MotionConfig transition={{ duration: 1 }}>
-          <motion.div
-            className={styles.div2}
-            initial={{ opacity: 0, x: 300 }}
-            animate={{ opacity: 1, x: 0 }}
-          >
-            <Grid.Container gap={1} css={{ marginTop: -10 }}>
-              <Grid>
-                <Collapse.Group
-                  shadow
-                  css={{ backgroundColor: "#16181A", opacity: 0.85 }}
-                >
-                  {calculusQuestions.map((item) => (
-                    <QuestionContainer
-                      question={item.question}
-                      correct={item.correct}
-                      A={item.A}
-                      B={item.B}
-                      C={item.C}
-                      D={item.D}
-                      feedback={item.feedback}
-                    />
-                  ))}
-                  <QuestionContainer />
-                </Collapse.Group>
-              </Grid>
-            </Grid.Container>
           </motion.div>
         </MotionConfig>
         <MotionConfig transition={{ duration: 1 }}>
@@ -180,6 +153,36 @@ const LearnScreen = () => {
             </Card>
           </motion.div>
         </MotionConfig>
+        <MotionConfig transition={{ duration: 1 }}>
+          <motion.div
+            className={styles.div2}
+            initial={{ opacity: 0, x: 300 }}
+            animate={{ opacity: 1, x: 0 }}
+          >
+            <Grid.Container gap={1} css={{ marginTop: -10 }}>
+              <Grid>
+                <Collapse.Group
+                  shadow
+                  css={{ backgroundColor: "#16181A", opacity: 0.85 }}
+                >
+                  {calculusQuestions.map((item) => (
+                    <QuestionContainer
+                      question={item.question}
+                      correct={item.correct}
+                      A={item.A}
+                      B={item.B}
+                      C={item.C}
+                      D={item.D}
+                      feedback={item.feedback}
+                    />
+                  ))}
+                  <QuestionContainer />
+                </Collapse.Group>
+              </Grid>
+            </Grid.Container>
+          </motion.div>
+        </MotionConfig>
+        
       </div>
     </>
   );

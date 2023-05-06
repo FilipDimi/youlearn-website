@@ -13,7 +13,7 @@ const VideoThumbNail = (props) => {
   };
 
   return (
-    <Grid xs={8} md={6} lg={4} xl={3}>
+    <Grid xs={12} md={6} lg={4} xl={3}>
       <Card
         onPress={RedirectHandler}
         isPressable
@@ -22,8 +22,9 @@ const VideoThumbNail = (props) => {
           backgroundColor: "#16181A",
           height: 300,
           opacity: 0.8,
-          padding: 10,
+          padding: 13,
           borderTopColor: "red",
+          minHeight: 400
         }}
       >
         <Card.Header>

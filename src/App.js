@@ -10,7 +10,6 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
         <Routes>
           <Route index path="/" element={<HomeScreen />} />
           <Route path="/lecture/:lecId" element={<LearnScreen />} />
