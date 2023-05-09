@@ -174,6 +174,7 @@ const LearnScreen = () => {
                       C={item.C}
                       D={item.D}
                       feedback={item.feedback}
+                      key={item.question}
                     />
                   ))}
                   <QuestionContainer />

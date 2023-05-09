@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, MotionConfig } from "framer-motion";
 import { Card, Text, Input, Button } from "@nextui-org/react";
 import Header from "./Header";
 import styles from "./SearchBox.module.css";
 
 const SearchBox = () => {
+  const [searchText, setSearchText] = useState("");
+  const navigate = useNavigate();
+
+  const onSubmitHandler = () => {
+    localStorage.removeItem("video-url");
+    localStorage.setItem("video-url", searchText);
+    navigate("/lecture-url");
+  }
+
   return (
     <MotionConfig transition={{ duration: 1 }}>
       <motion.div
@@ -28,12 +38,13 @@ const SearchBox = () => {
                 Find Lecture
               </Text>
               <Input
-                labelPlaceholder="Search Box"
+                labelPlaceholder="Paste YouTube Link"
                 status="success"
                 css={{ marginTop: 30 }}
+                onChange={(e) => setSearchText(e.target.value)}
               />
-              <Button color="success" auto css={{ marginTop: 20 }}>
-                Search
+              <Button color="success" auto css={{ marginTop: 20 }} onPress={onSubmitHandler}>
+                Learn
               </Button>
             </Card.Body>
           </Card>

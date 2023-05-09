@@ -5,11 +5,13 @@
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   margin-top: 20px;
+  z-index: 999;
 }
 
 .div1 {
   grid-area: 1 / 1 / 4 / 4;
   height: 545px;
+  z-index: 999;
 }
 .div2 {
   grid-area: 1 / 4 / 6 / 6;
@@ -18,6 +20,32 @@
 .div3 {
   grid-area: 4 / 1 / 6 / 4;
   height: 300px;
+  z-index: 999;
+}
+
+.rotate {
+  animation: rotation 2s;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.linear {
+  animation-timing-function: linear;
+}
+
+.infinite {
+  animation-iteration-count: infinite;
+}
+
+.rotateImage {
+  animation: rotation 2.5s linear infinite;
 }
 
 @media only screen and (max-width: 720px) {
