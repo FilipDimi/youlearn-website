@@ -146,7 +146,7 @@ const LearnScreen = () => {
                 feedback={calculusQuestions[0].feedback}
               />
             </Card>
-            <div style={{ backgroundColor: "#fff", borderRadius: 20 }}>
+            <div style={{ backgroundColor: "#16B35B", borderRadius: 20 }}>
               <FlashcardArray cards={cards} />
             </div>
             <Card
