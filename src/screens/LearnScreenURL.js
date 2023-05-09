@@ -10,6 +10,7 @@ import {
   Button,
 } from "@nextui-org/react";
 import { motion, MotionConfig } from "framer-motion";
+import { Tab } from '@headlessui/react'
 import styles from "./LearnScreen.module.css";
 import QuestionContainer from "../components/QuestionContainer";
 import NeuralNetwork from "../components/NeuralNetwork";
@@ -19,18 +20,19 @@ import logo from "../assets/logo.png";
 const BASE_URL = "https://learn-ai-385203.uk.r.appspot.com/url";
 
 const YouTubeGetID = (url) => {
-  var ID = '';
-  url = url.replace(/(>|<)/gi,'').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-  if(url[2] !== undefined) {
+  var ID = "";
+  url = url
+    .replace(/(>|<)/gi, "")
+    .split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  if (url[2] !== undefined) {
     // eslint-disable-next-line
     ID = url[2].split(/[^0-9a-z_\-]/i);
     ID = ID[0];
-  }
-  else {
+  } else {
     ID = url;
   }
-    return ID;
-}
+  return ID;
+};
 
 const LearnScreenURL = () => {
   const [multipleQ, setMultipleQ] = useState([]);
@@ -117,7 +119,22 @@ const LearnScreenURL = () => {
               initial={{ opacity: 0, y: 400 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              {shortAnswer.map(item => (
+              <Tab.Group>
+                <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
+                  <Tab className="w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700',
+                  'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2">MCQ</Tab>
+                  <Tab>Short Answer</Tab>
+                </Tab.List>
+                <Tab.Panels>
+                  <Tab.Panel>
+                    Test
+                  </Tab.Panel>
+                  <Tab.Panel>
+                    Test 2
+                  </Tab.Panel>
+                </Tab.Panels>
+              </Tab.Group>
+              {/* {shortAnswer.map((item) => (
                 <Card
                   css={{
                     backgroundColor: "#16181A",
@@ -128,7 +145,7 @@ const LearnScreenURL = () => {
                 >
                   <h3>Short Answer</h3>
                   <Text color="#fff" size={18} css={{ marginTop: 10 }}>
-                    { item.prompt }
+                    {item.prompt}
                   </Text>
                   <Textarea
                     labelPlaceholder="Answer"
@@ -144,7 +161,7 @@ const LearnScreenURL = () => {
                     Submit
                   </Button>
                 </Card>
-              ))}
+              ))} */}
             </motion.div>
           </MotionConfig>
           <MotionConfig transition={{ duration: 1 }}>
@@ -153,28 +170,7 @@ const LearnScreenURL = () => {
               initial={{ opacity: 0, x: 300 }}
               animate={{ opacity: 1, x: 0 }}
             >
-              <Grid.Container gap={1} css={{ marginTop: -10 }}>
-                <Grid>
-                  <Collapse.Group
-                    shadow
-                    css={{ backgroundColor: "#16181A", opacity: 0.85 }}
-                  >
-                    {multipleQ.map((item) => (
-                      <QuestionContainer
-                        question={item.question}
-                        correct={item.correct}
-                        A={item.A}
-                        B={item.B}
-                        C={item.C}
-                        D={item.D}
-                        feedback={item.correct}
-                        key={item.question}
-                      />
-                    ))}
-                    <QuestionContainer />
-                  </Collapse.Group>
-                </Grid>
-              </Grid.Container>
+
             </motion.div>
           </MotionConfig>
         </div>

@@ -1,26 +1,38 @@
-.parent {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  margin-top: 20px;
-  z-index: 999;
+.main {
 }
 
-.div1 {
-  grid-area: 1 / 1 / 4 / 4;
-  height: 545px;
-  z-index: 999;
+.mainVContainer {
+  display: flex;
+  flex-direction: column;
 }
-.div2 {
-  grid-area: 1 / 4 / 6 / 6;
-  z-index: 500;
-}
-.div3 {
-  grid-area: 4 / 1 / 6 / 4;
-  height: 300px;
+
+.firstHContainer {
+  display: flex;
+  flex-direction: row;
   z-index: 999;
+  padding: 10px;
+  gap: 15px;
+}
+
+.transriptDiv {
+  background-color: #16181a;
+  overflow-y: scroll;
+  border-radius: 20px;
+  height: 500px;
+  width: 50%;
+  padding: 50px;
+}
+
+.secondHContainer {
+  display: flex;
+  flex-direction: row;
+  z-index: 999;
+  padding: 10px;
+  gap: 15px;
+}
+
+.video {
+  width: 1000px;
 }
 
 .rotate {
@@ -48,13 +60,16 @@
   animation: rotation 2.5s linear infinite;
 }
 
-@media only screen and (max-width: 720px) {
-    .parent {
-        display: flex;
-        flex-direction: column;
-    }
-    .div1, .div2, .div3 {
-        z-index: 500;
-        margin-bottom: 20px;
-    }
+@media only screen and (max-width: 850px) {
+  .firstHContainer {
+    flex-direction: column;
   }
+  .transriptDiv {
+    width: 100%;
+    padding: 5;
+  }
+
+  .secondHContainer {
+    flex-direction: column;
+  }
+}

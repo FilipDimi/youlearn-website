@@ -1,17 +1,16 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import YouTube from "react-youtube";
+import { FlashcardArray } from "react-quizlet-flashcard";
+import styles from "./LearnScreen.module.css";
 import {
-  Grid,
-  Collapse,
   Card,
   Text,
   Textarea,
   Button,
 } from "@nextui-org/react";
-import { motion, MotionConfig } from "framer-motion";
-import styles from "./LearnScreen.module.css";
-import QuestionContainer from "../components/QuestionContainer";
+
 import NeuralNetwork from "../components/NeuralNetwork";
+import QuestionContainer from "../components/QuestionContainer";
 import Header from "../components/Header";
 
 const calculusQuestions = [
@@ -78,64 +77,88 @@ const calculusQuestions = [
 ];
 
 const LearnScreen = () => {
-  const navigate = useNavigate();
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  const RedirectHandler = () => {
-    let path = "/";
-    navigate(path);
-  };
+  const cards = [
+    {
+      id: 1,
+      front: "What is the capital of <u>Alaska</u>?",
+      back: "Juneau",
+      frontHTML: "What?",
+      frontContentStyle: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: '#16181A',
+        color: '#fff'
+      },
+      backHTML: "Yes",
+      backContentStyle: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: '#16181A',
+        color: '#fff'
+      },
+    },
+  ];
+
+  useEffect(() => {
+    setScreenWidth(screenWidth);
+    console.log(screenWidth);
+  }, [screenWidth]);
 
   return (
     <>
-    <Header />
+      <Header />
       <NeuralNetwork />
-      <MotionConfig transition={{ duration: 1 }}>
-        <motion.div
-          initial={{ opacity: 0, x: -300 }}
-          animate={{ opacity: 1, x: 0 }}
-        >
-          <Button shadow color="success" auto onPress={RedirectHandler}>
-            Go Back
-          </Button>
-        </motion.div>
-      </MotionConfig>
-      <div className={styles.parent}>
-        <MotionConfig transition={{ duration: 1 }}>
-          <motion.div
-            className={styles.div1}
-            initial={{ opacity: 0, x: -300 }}
-            animate={{ opacity: 1, x: 0 }}
-          >
-            <iframe
-              style={{ borderRadius: 20 }}
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/M9W5Fn0_WAM?start=0"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-          </motion.div>
-        </MotionConfig>
-        <MotionConfig transition={{ duration: 1 }}>
-          <motion.div
-            className={styles.div3}
-            initial={{ opacity: 0, y: 400 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
+      <div className={styles.main}>
+        <div className={styles.mainVContainer}>
+          <div className={styles.firstHContainer}>
+            {screenWidth > 850 ? (
+              <YouTube
+                videoId="Tn6-PIqc4UM"
+                opts={{ width: 800, height: 500, borderRadius: 30 }}
+              />
+            ) : (
+              <YouTube
+                videoId="Tn6-PIqc4UM"
+                opts={{ width: 300, height: 200 }}
+              />
+            )}
+
+            <div className={styles.transriptDiv}>
+              <h3 style={{ marginBottom: 30 }}>Video's Transript</h3>
+              <p style={{ color: "white", textAlign: 'justify' }}>
+  
+              </p>
+            </div>
+          </div>
+          <div className={styles.secondHContainer}>
+            <Card style={{ backgroundColor: "#16181A", padding: 50 }}>
+              <QuestionContainer
+                question={calculusQuestions[0].question}
+                A={calculusQuestions[0].A}
+                B={calculusQuestions[0].B}
+                C={calculusQuestions[0].C}
+                D={calculusQuestions[0].D}
+                correct={calculusQuestions[0].correct}
+                feedback={calculusQuestions[0].feedback}
+              />
+            </Card>
+            <div style={{ backgroundColor: "#fff", borderRadius: 20 }}>
+              <FlashcardArray cards={cards} />
+            </div>
             <Card
               css={{
                 backgroundColor: "#16181A",
-                marginTop: 20,
                 padding: 20,
                 opacity: 0.85,
               }}
             >
               <h3>Short Answer</h3>
               <Text color="#fff" size={18} css={{ marginTop: 10 }}>
-                Find the arc length of the curve y = (1/3)x^3 from x = 0 to x =
-                1.
+                Wuestions sdf sdfdskjjknnf sdf jnks efs f skjn
               </Text>
               <Textarea
                 labelPlaceholder="Answer"
@@ -151,39 +174,8 @@ const LearnScreen = () => {
                 Submit
               </Button>
             </Card>
-          </motion.div>
-        </MotionConfig>
-        <MotionConfig transition={{ duration: 1 }}>
-          <motion.div
-            className={styles.div2}
-            initial={{ opacity: 0, x: 300 }}
-            animate={{ opacity: 1, x: 0 }}
-          >
-            <Grid.Container gap={1} css={{ marginTop: -10 }}>
-              <Grid>
-                <Collapse.Group
-                  shadow
-                  css={{ backgroundColor: "#16181A", opacity: 0.85 }}
-                >
-                  {calculusQuestions.map((item) => (
-                    <QuestionContainer
-                      question={item.question}
-                      correct={item.correct}
-                      A={item.A}
-                      B={item.B}
-                      C={item.C}
-                      D={item.D}
-                      feedback={item.feedback}
-                      key={item.question}
-                    />
-                  ))}
-                  <QuestionContainer />
-                </Collapse.Group>
-              </Grid>
-            </Grid.Container>
-          </motion.div>
-        </MotionConfig>
-        
+          </div>
+        </div>
       </div>
     </>
   );

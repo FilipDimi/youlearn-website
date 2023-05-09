@@ -37,7 +37,7 @@ const QuestionContainer = (props) => {
   const [selected, setSelected] = useState("");
 
   return (
-    <Collapse title="Question">
+    <>
       <Text css={{ color: "#fff" }}>{props.question}</Text>
       <Radio.Group
         label="Answers"
@@ -67,7 +67,7 @@ const QuestionContainer = (props) => {
       ) : (
         <IncorrectAnswer show={selected} feedback={props.feedback} />
       )}
-    </Collapse>
+    </>
   );
 };
 
