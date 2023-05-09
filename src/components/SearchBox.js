@@ -5,14 +5,29 @@ import { Card, Text, Input, Button } from "@nextui-org/react";
 import Header from "./Header";
 import styles from "./SearchBox.module.css";
 
+const YouTubeGetID = (url) => {
+  var ID = "";
+  url = url
+    .replace(/(>|<)/gi, "")
+    .split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  if (url[2] !== undefined) {
+    // eslint-disable-next-line
+    ID = url[2].split(/[^0-9a-z_\-]/i);
+    ID = ID[0];
+  } else {
+    ID = url;
+  }
+  return ID;
+};
+
 const SearchBox = () => {
   const [searchText, setSearchText] = useState("");
   const navigate = useNavigate();
 
   const onSubmitHandler = () => {
-    localStorage.removeItem("video-url");
-    localStorage.setItem("video-url", searchText);
-    navigate("/lecture-url");
+    let videoID = YouTubeGetID(searchText);
+    let path = `/lecture-url/${videoID}`;
+    navigate(path);
   }
 
   return (

@@ -4,7 +4,6 @@ import "./App.css";
 
 import HomeScreen from "./screens/HomeScreen";
 import LearnScreen from "./screens/LearnScreen";
-import LearnScreenURL from "./screens/LearnScreenURL";
 
 function App() {
   return (
@@ -12,8 +11,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index path="/" element={<HomeScreen />} />
-          <Route path="/lecture-url" element={<LearnScreenURL />} />
-          <Route path="/lecture/:lecId" element={<LearnScreen />} />
+          <Route path="/lecture-url/:vidID" element={<LearnScreen />} />
         </Routes>
       </BrowserRouter>
     </div>

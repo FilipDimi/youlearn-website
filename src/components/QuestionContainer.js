@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Collapse, Text, Radio, Badge, Card } from "@nextui-org/react";
+import React, { useEffect, useState } from "react";
+import { Text, Radio, Badge, Card } from "@nextui-org/react";
 
 const CorrectAnswer = (props) => {
   if (props.show !== "") {
@@ -36,10 +36,15 @@ const IncorrectAnswer = (props) => {
 const QuestionContainer = (props) => {
   const [selected, setSelected] = useState("");
 
+  useEffect(()=> {
+    setSelected("")
+  }, [props.question])
+
   return (
     <>
       <Text css={{ color: "#fff" }}>{props.question}</Text>
       <Radio.Group
+        key={props.question}
         label="Answers"
         color="success"
         value={selected}
