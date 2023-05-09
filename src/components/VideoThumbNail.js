@@ -4,11 +4,10 @@ import { Card, Text, Grid } from "@nextui-org/react";
 import styles from "./VideoThumbNail.module.css";
 
 const VideoThumbNail = (props) => {
-  const { lectureID } = props;
   const navigate = useNavigate();
 
   const RedirectHandler = () => {
-    let path = `/lecture/${lectureID}`;
+    let path = `/lecture-url/${props.ID}`;
     navigate(path);
   };
 
@@ -32,25 +31,17 @@ const VideoThumbNail = (props) => {
             <img
               className={styles.headerImg}
               width="250"
-              src="https://images.pexels.com/photos/3769714/pexels-photo-3769714.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              src={props.img}
               alt="Calculus II Antiderivatives"
             />
             <Text color="#fff" size={20}>
-              Calculus II Antiderivatives
+              {props.title}
             </Text>
           </div>
         </Card.Header>
         <Card.Body>
           <Text color="#fff" css={{ textAlign: "justify" }}>
-            Calculus II: Integrals and Applications" is a comprehensive video
-            that covers techniques for evaluating integrals, applications of
-            integration, and infinite series. Learn to solve challenging
-            calculus problems and gain a deeper understanding of the fundamental
-            concepts of calculus. Calculus II: Integrals and Applications" is a
-            comprehensive video that covers techniques for evaluating integrals,
-            applications of integration, and infinite series. Learn to solve
-            challenging calculus problems and gain a deeper understanding of the
-            fundamental concepts of calculus.
+            {props.desc}
           </Text>
         </Card.Body>
       </Card>
